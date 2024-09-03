@@ -1,23 +1,40 @@
 const form = document.getElementById("form")
 const listaAlunos = document.getElementById('lista')
+const aluno = document.getElementById('aluno')
+const nota = document.getElementById('nota')
 let informacoes = ``
+const alunos = []
 
 form.addEventListener("submit", function(e){
     e.preventDefault()
-    const aluno = document.getElementById('aluno')
-    const nota = document.getElementById('nota')
+    alunoAdd()
+    showOnScreen()
+    
+})
+    
+function alunoAdd(){
     if(nota.value === "" ) {
         alert('por favor, digite algum número')
         return
     }  else if(isNaN(nota.value)){
         alert('por favor, digite somente números')
     } else {
-    const nomeDoAluno = aluno.value
+
+
+    let nomeDoAluno = aluno.value
     let notaDoAluno = nota.value
     notaDoAluno = parseInt(notaDoAluno)
+    console.log(nomeDoAluno)
 
-    alunos[0].notas.push(nota.value)
+    const estudante = {nome: nomeDoAluno}
     
+
+    alunos.push(estudante)
+
+    }
+}
+
+function showOnScreen(){
     informacoes = `<h1>Informações de Alunos</h1>`
     for(let i = 0; i < alunos.length; i++) {
     informacoes += `<li>Aluno: ${alunos[i].nome}<br>
@@ -31,18 +48,4 @@ form.addEventListener("submit", function(e){
     listaAlunos.innerHTML = informacoes
     informacoes = ``
     }
-})
-    
-
-
-const alunos = [
-    {nome: "Daniel", notas: [1,3,3,8]},
-    {nome: "Maria", notas: [10,7,8,9]},
-    {nome: "João", notas: [10,6,3,0]}
-]
-
-
-
-
-
 
