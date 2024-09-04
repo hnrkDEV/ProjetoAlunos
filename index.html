@@ -9,15 +9,20 @@
 <body>
             <div class="container">
         <form action="" id="form">
-            <label for="">Digite seu nome<input type="text" placeholder="Seu nome" id="aluno"></label>
+            <div id="divNome">
+            <label for="" id="labelNome">Digite seu nome<input type="text" placeholder="Seu nome" id="aluno"></label>
             <button type="submit" id="buttonName">Adicionar nome</button>
-            <label for="">Digite sua nota<input type="text" placeholder="Sua Nota" id="nota"></label>
+            </div>
+
+            <div id="divNota">
+            <label for="">Digite suas notas<input type="text" placeholder="Sua Nota" id="nota"></label>
             <button type="submit" id="buttonNota">Adicionar nota</button>
-           
+            </div>
+
         </form>
             </div>
             <div class="res">
-                <h1>listagem de alunos</h1>
+                <h1>Notas do aluno</h1>
             <ul id="lista">
 
             </ul>
