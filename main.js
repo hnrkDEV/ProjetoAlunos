@@ -4,6 +4,8 @@ const form = document.getElementById("form")
 const listaAlunos = document.getElementById('lista')
 const aluno = document.getElementById('aluno')
 const nota = document.getElementById('nota')
+const media = document.getElementById("media")
+let notaMedia = 0
 
 const divNome = document.getElementById("divNome")
 const divNota = document.getElementById("divNota")
@@ -22,6 +24,7 @@ botaoNota.addEventListener("click", function(e) {
     e.preventDefault()
     notaAdd()
     showOnScreen()
+    addMedia()
 })
 
 function alunoAdd() {
@@ -33,18 +36,16 @@ function alunoAdd() {
     estudante.nota = [] 
 }
 
-
-
 function notaAdd() {
     let notaDoAluno = parseInt(nota.value)
     if (nota.value === "" || isNaN(notaDoAluno) || nota.value <0 || nota.value >10) {
         alert("Por favor, digite um número válido e que seja entre 0 e 10")
         return
     }
-
+    notaMedia += parseInt(nota.value)
     estudante.nota.push(notaDoAluno)
+    nota.value = ""
 }
-
 
 form.addEventListener("submit", function(e) {
     e.preventDefault()
@@ -60,5 +61,14 @@ function showOnScreen(){
     listaAlunos.innerHTML = `<h3>Aluno: ${estudante.nome}</h3>`
     for(let i=0 ; i<estudante.nota.length; i++){
         listaAlunos.innerHTML += `<li>${estudante.nota[i]}`
+    }
+
+}
+
+function addMedia(){
+    if(estudante.nota.length >=3){
+    notaMedia = (notaMedia/estudante.nota.length).toFixed(2)
+    listaAlunos.innerHTML += `<h3>Média: ${notaMedia}</h3>`
+    divNota.style = "display: none;"
     }
 }
