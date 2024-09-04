@@ -4,51 +4,45 @@ const form = document.getElementById("form")
 const listaAlunos = document.getElementById('lista')
 const aluno = document.getElementById('aluno')
 const nota = document.getElementById('nota')
-let informacoes = ``
-let x= 0
-let y = 0
 
-const alunos = []
+let estudante = { nome: '', nota: [] }
 
-
-let nomeDoAluno = aluno.value
-
-const estudante = {nome: nomeDoAluno, nota: []}
-
-botaoNome.addEventListener("click", function(e){
-    x++
+botaoNome.addEventListener("click", function(e) {
     e.preventDefault()
     alunoAdd()
 })
 
-botaoNota.addEventListener("click", function(e){
+botaoNota.addEventListener("click", function(e) {
     e.preventDefault()
     notaAdd()
 })
-function alunoAdd(){
-    if(aluno.value === "" ){
-        alert("por favor, digite um nome")
+
+function alunoAdd() {
+    if (aluno.value === "") {
+        alert("Por favor, digite um nome")
         return
     }
     estudante.nome = aluno.value
-    alunos.push(estudante)
-    }
+    estudante.nota = [] // Resetando as notas ao adicionar um novo aluno
+    console.log(`Nome do aluno adicionado: ${estudante.nome}`)
+}
 
-function notaAdd(){
-
+function notaAdd() {
     let notaDoAluno = parseInt(nota.value)
-    if(nota.value === "" || isNaN(notaDoAluno)){
-        alert("por favor, digite um número válido")
+    if (nota.value === "" || isNaN(notaDoAluno)) {
+        alert("Por favor, digite um número válido")
         return
     }
 
-    if(x != 0){
-        estudante.nota[y] = nota.value
-        alunos.push(estudante)
-        y++
-    }   else if(x = 0){
-
-    }
-
+    estudante.nota.push(notaDoAluno) // Adicionando a nota ao array de notas do estudante
+    alert(`Nota adicionada: ${notaDoAluno}`)
+    console.log(`Notas do aluno ${estudante.nome}: ${estudante.nota}`)
 }
 
+// Para finalizar o cadastro e adicionar o estudante ao array de alunos
+form.addEventListener("submit", function(e) {
+    e.preventDefault()
+    alunos.push(estudante)
+    estudante = { nome: '', nota: [] } // Reseta o objeto estudante para o próximo cadastro
+    console.log('Alunos:', alunos)
+})
