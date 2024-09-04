@@ -1,51 +1,54 @@
+const botaoNome = document.getElementById("buttonName")
+const botaoNota = document.getElementById("buttonNota")
 const form = document.getElementById("form")
 const listaAlunos = document.getElementById('lista')
 const aluno = document.getElementById('aluno')
 const nota = document.getElementById('nota')
 let informacoes = ``
+let x= 0
+let y = 0
+
 const alunos = []
 
-form.addEventListener("submit", function(e){
+
+let nomeDoAluno = aluno.value
+
+const estudante = {nome: nomeDoAluno, nota: []}
+
+botaoNome.addEventListener("click", function(e){
+    x++
     e.preventDefault()
     alunoAdd()
-    showOnScreen()
-    
 })
-    
+
+botaoNota.addEventListener("click", function(e){
+    e.preventDefault()
+    notaAdd()
+})
 function alunoAdd(){
-    if(nota.value === "" ) {
-        alert('por favor, digite algum número')
+    if(aluno.value === "" ){
+        alert("por favor, digite um nome")
         return
-    }  else if(isNaN(nota.value)){
-        alert('por favor, digite somente números')
-    } else {
-
-
-    let nomeDoAluno = aluno.value
-    let notaDoAluno = nota.value
-    notaDoAluno = parseInt(notaDoAluno)
-    console.log(nomeDoAluno)
-
-    const estudante = {nome: nomeDoAluno}
-    
-
+    }
+    estudante.nome = aluno.value
     alunos.push(estudante)
+    }
+
+function notaAdd(){
+
+    let notaDoAluno = parseInt(nota.value)
+    if(nota.value === "" || isNaN(notaDoAluno)){
+        alert("por favor, digite um número válido")
+        return
+    }
+
+    if(x != 0){
+        estudante.nota[y] = nota.value
+        alunos.push(estudante)
+        y++
+    }   else if(x = 0){
 
     }
-}
 
-function showOnScreen(){
-    informacoes = `<h1>Informações de Alunos</h1>`
-    for(let i = 0; i < alunos.length; i++) {
-    informacoes += `<li>Aluno: ${alunos[i].nome}<br>
-    <h2>notas:</h2>
-    <ul>`
-    for(let x = 0; x < alunos[i].notas.length; x++){
-        informacoes += `<li>${alunos[i].notas[x]}</li>`
-    }
-        informacoes +=`</ul>`
 }
-    listaAlunos.innerHTML = informacoes
-    informacoes = ``
-    }
 
