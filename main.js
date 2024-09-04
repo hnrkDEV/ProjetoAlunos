@@ -14,7 +14,7 @@ let estudante = { nome: '', nota: [] }
 botaoNome.addEventListener("click", function(e) {
     e.preventDefault()
     alunoAdd()
-    divNome.style = "display: none;"
+    divNome.style = "display: none"
     divNota.style = "display: flex;"
 })
 
@@ -32,6 +32,8 @@ function alunoAdd() {
     estudante.nome = aluno.value
     estudante.nota = [] 
 }
+
+
 
 function notaAdd() {
     let notaDoAluno = parseInt(nota.value)
@@ -52,6 +54,9 @@ form.addEventListener("submit", function(e) {
 })
 
 function showOnScreen(){
+    if(estudante.nota.length < 1){
+        return
+    } 
     listaAlunos.innerHTML = `<h3>Aluno: ${estudante.nome}</h3>`
     for(let i=0 ; i<estudante.nota.length; i++){
         listaAlunos.innerHTML += `<li>${estudante.nota[i]}`
